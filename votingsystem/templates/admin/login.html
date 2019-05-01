@@ -9,16 +9,33 @@
                             <img src="{{ url_for('static', filename='img/national-emblem.png') }}" alt="" class="img-fluid d-block mx-auto p-2">
                             <h1 class="text-center">Admin Login</h1>
                             <form action="" method="POST">
+                                {{ form.hidden_tag() }}
                                 <div class="form-group">
-                                    <label for="email" class="col-form-label font-weight-bold">Email Address</label>
-                                    <input type="email" placeholder="Email Address" class="form-control">
+                                    {{ form.email.label(class="col-form-label font-weight-bold") }}
+                                    {{ form.email(class="form-control", placeholder="Email Address") }}
+
+                                    {% if form.email.errors %}
+                                        <div class="mt-2">
+                                            {% for error in form.email.errors %}
+                                                <span class="text-danger">{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
                                 </div>
                                 <div class="form-group">
-                                    <label for="password" class="col-form-label font-weight-bold">Password</label>
-                                    <input type="password" placeholder="Password" class="form-control">
+                                    {{ form.password.label(class="col-form-label font-weight-bold") }}
+                                    {{ form.password(class="form-control", placeholder="Password") }}
+
+                                    {% if form.password.errors %}
+                                        <div class="mt-2">
+                                            {% for error in form.password.errors %}
+                                                <span class="text-danger">{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
                                 </div>
                                 <div class="form-group d-flex justify-content-center pt-4">
-                                    <button type="submit" class="btn btn-purple shadow">Login</button>
+                                    {{ form.submit(class="btn btn-purple shadow") }}
                                 </div>
                             </form>
                         </div>
