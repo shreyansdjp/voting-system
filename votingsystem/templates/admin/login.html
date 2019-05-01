@@ -1,0 +1,30 @@
+{% extends 'base.html' %} 
+{% block content %}
+    <div class="bg full-height">
+        <div class="container">
+            <div class="row d-flex align-items-center justify-content-center full-height">
+                <div class="col-md-8">
+                    <div class="card shadow border-0">
+                        <div class="card-body">
+                            <img src="{{ url_for('static', filename='img/national-emblem.png') }}" alt="" class="img-fluid d-block mx-auto p-2">
+                            <h1 class="text-center">Admin Login</h1>
+                            <form action="" method="POST">
+                                <div class="form-group">
+                                    <label for="email" class="col-form-label font-weight-bold">Email Address</label>
+                                    <input type="email" placeholder="Email Address" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password" class="col-form-label font-weight-bold">Password</label>
+                                    <input type="password" placeholder="Password" class="form-control">
+                                </div>
+                                <div class="form-group d-flex justify-content-center pt-4">
+                                    <button type="submit" class="btn btn-purple shadow">Login</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
