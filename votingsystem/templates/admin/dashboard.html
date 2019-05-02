@@ -1,0 +1,37 @@
+{% extends 'base.html' %} {% block content %}
+<div class="bg full-height">
+    {% include 'partials/_admin_navbar.html' %}
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="col-md-10">
+                {% if elections %}
+                <table class="table table-bordered table-hover open-sans">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Date Started</th>
+                            <th>Date Ended</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for election in elections %}
+                        <tr>
+                            <td>{{ election.name }}</td>
+                            <td>{{ election.date_started }}</td>
+                            <td>{{ election.date_ended }}</td>
+                            <td>
+                                <a onclick="return confirm('Do really want to delete this election?')" href="{{ url_for('delete_election', id=election.id) }}" class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                <h1 class="font-weight-bold text-center">No Elections Available</h1>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

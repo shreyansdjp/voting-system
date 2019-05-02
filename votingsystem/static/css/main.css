@@ -1,11 +1,16 @@
 @import url("https://fonts.googleapis.com/css?family=Raleway");
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
 body {
     font-family: "Raleway", sans-serif !important;
 }
 
 .full-height {
-    height: 102vh;
+    height: 100vh;
+}
+
+.open-sans {
+    font-family: 'Open Sans', sans-serif;
 }
 
 .bg {
@@ -23,10 +28,10 @@ body {
     box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.16) !important;
     border: solid 1px #03a9f4 !important;
     padding: 30px 15px !important;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .btn {
-    padding: 10px 30px;
     border: none;
 }
 
@@ -37,4 +42,16 @@ body {
 .btn-purple {
     background-color: #e91e63;
     color: white;
+}
+
+.nav-link.active {
+    border-bottom: 1px solid #03A9F4;
+}
+
+.btn-info {
+    background-color: #03A9F4;
+}
+
+.btn-danger {
+    background-color: #F44336;
 }

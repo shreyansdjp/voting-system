@@ -1,0 +1,87 @@
+<nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container">
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarTogglerDemo01"
+            aria-controls="navbarTogglerDemo01"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item my-4 mr-4">
+                    <a
+                        class="nav-link 
+                        {% if request.path == '/dashboard' or request.path == '/create/election' %}
+                            active
+                        {% endif %}
+                    "
+                        href="{{ url_for('admin_dashboard') }}"
+                        >Elections</a
+                    >
+                </li>
+                <li class="nav-item m-4">
+                    <a
+                        class="nav-link 
+                        {% if request.path == '/get/admins' or request.path == '/create/admin' %}
+                            active
+                        {% endif %}
+                    "
+                        href="{{ url_for('get_admins') }}"
+                        >Admins</a
+                    >
+                </li>
+                <li class="nav-item m-4">
+                    <a
+                        class="nav-link 
+                        {% if request.path == '/get/users' or request.path == '/create/user' %}
+                            active
+                        {% endif %}
+                    "
+                        href="{{ url_for('get_users') }}"
+                        >Users</a
+                    >
+                </li>
+                <li class="nav-item m-4">
+                    <a
+                        class="nav-link 
+                        {% if request.path == '/get/parties' or request.path == '/create/party' %}
+                            active
+                        {% endif %}
+                    "
+                        href="{{ url_for('get_parties') }}"
+                        >Parties</a
+                    >
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                <li class="nav-item my-4 ml-4">
+                    {% if request.path == '/dashboard' or request.path == '/create/election' %}
+                    <a href="{{ url_for('create_election') }}" class="btn btn-info btn-block">
+                        <i class="fas fa-plus mr-1"></i>Create New Election
+                    </a>
+                    {% elif request.path == '/get/admins' or request.path == '/create/admin' %}
+                    <a href="{{ url_for('create_admin') }}" class="btn btn-info btn-block">
+                        <i class="fas fa-plus mr-1"></i>Create New Admin
+                    </a>
+                    {% elif request.path == '/get/parties' or request.path == '/create/party' %}
+                    <a href="{{ url_for('create_party') }}" class="btn btn-info btn-block">
+                        <i class="fas fa-plus mr-1"></i>Create New Party
+                    </a>
+                    {% elif request.path == '/get/users' or request.path == '/create/user' %}
+                    <a href="{{ url_for('create_user') }}" class="btn btn-info">
+                        <i class="fas fa-plus mr-1"></i>Create New User
+                    </a>
+                    {% endif %}
+                </li>
+                <li class="nav-item m-4">
+                    <a href="{{ url_for('logout') }}" class="btn btn-danger"> <i class="fas fa-power-off mr-1"></i>Logout </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

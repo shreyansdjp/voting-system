@@ -11,6 +11,7 @@ flask-sqlalchemy = "*"
 pymysql = "*"
 passlib = "*"
 flask-wtf = "*"
+pillow = "*"
 
 [requires]
 python_version = "3.6"

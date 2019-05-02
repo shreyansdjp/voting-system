@@ -1,3 +1,4 @@
 {
-    "python.pythonPath": "/home/shreyans/.local/share/virtualenvs/Voting_System-DbY6YFUv/bin/python"
+    "python.pythonPath": "/home/shreyans/.local/share/virtualenvs/Voting_System-DbY6YFUv/bin/python",
+    "python.formatting.provider": "black"
 }

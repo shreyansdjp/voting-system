@@ -1,0 +1,142 @@
+{% extends 'base.html' %} {% block content %}
+<div class="bg full-height">
+    {% include 'partials/_admin_navbar.html' %}
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow border-0">
+                    <div class="card-body">
+                        <h1 class="text-center">Create Election</h1>
+                        <form action="" method="POST" enctype="multipart/form-data">
+                            {{ form.hidden_tag() }}
+                            <div class="form-group">
+                                {{ form.name.label(class="col-form-label font-weight-bold") }}
+                                {{ form.name(class="form-control", placeholder="Name of Party Member") }}
+
+                                {% if form.name.errors %}
+                                    <div class="mt-2">
+                                        {% for error in form.name.errors %}
+                                            <span class="text-danger">{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                {{ form.picture.label(class="col-form-label font-weight-bold") }}
+                                {{ form.picture(class="form-control-file", placeholder="Date Started") }}
+
+                                {% if form.picture.errors %}
+                                    <div class="mt-2">
+                                        {% for error in form.picture.errors %}
+                                            <span class="text-danger">{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                {{ form.adhaar_number.label(class="col-form-label font-weight-bold") }}
+                                {{ form.adhaar_number(class="form-control", placeholder="Adhaar Number") }}
+
+                                {% if form.adhaar_number.errors %}
+                                    <div class="mt-2">
+                                        {% for error in form.adhaar_number.errors %}
+                                            <span class="text-danger">{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                {{ form.mobile_number.label(class="col-form-label font-weight-bold") }}
+                                {{ form.mobile_number(class="form-control", placeholder="Mobile Number") }}
+
+                                {% if form.mobile_number.errors %}
+                                    <div class="mt-2">
+                                        {% for error in form.mobile_number.errors %}
+                                            <span class="text-danger">{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                {{ form.voter_id.label(class="col-form-label font-weight-bold") }}
+                                {{ form.voter_id(class="form-control", placeholder="Voter ID card number") }}
+
+                                {% if form.voter_id.errors %}
+                                    <div class="mt-2">
+                                        {% for error in form.voter_id.errors %}
+                                            <span class="text-danger">{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                {{ form.address.label(class="col-form-label font-weight-bold") }}
+                                {{ form.address(class="form-control", placeholder="Address") }}
+
+                                {% if form.address.errors %}
+                                    <div class="mt-2">
+                                        {% for error in form.address.errors %}
+                                            <span class="text-danger">{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                {{ form.district.label(class="col-form-label font-weight-bold") }}
+                                {{ form.district(class="form-control", placeholder="District") }}
+
+                                {% if form.district.errors %}
+                                    <div class="mt-2">
+                                        {% for error in form.district.errors %}
+                                            <span class="text-danger">{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                {{ form.party_name.label(class="col-form-label font-weight-bold") }}
+                                {{ form.party_name(class="form-control", placeholder="Party Name") }}
+
+                                {% if form.party_name.errors %}
+                                    <div class="mt-2">
+                                        {% for error in form.party_name.errors %}
+                                            <span class="text-danger">{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                {{ form.abbreviation.label(class="col-form-label font-weight-bold") }}
+                                {{ form.abbreviation(class="form-control", placeholder="Short form of party name") }}
+
+                                {% if form.abbreviation.errors %}
+                                    <div class="mt-2">
+                                        {% for error in form.abbreviation.errors %}
+                                            <span class="text-danger">{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                {{ form.logo.label(class="col-form-label font-weight-bold") }}
+                                {{ form.logo(class="form-control-file", placeholder="Logo of Party") }}
+
+                                {% if form.logo.errors %}
+                                    <div class="mt-2">
+                                        {% for error in form.logo.errors %}
+                                            <span class="text-danger">{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="form-group d-flex justify-content-center pt-4">
+                                {{ form.submit(class="btn btn-purple shadow") }}
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

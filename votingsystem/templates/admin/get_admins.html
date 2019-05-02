@@ -1,0 +1,35 @@
+{% extends 'base.html' %} {% block content %}
+<div class="bg full-height">
+    {% include 'partials/_admin_navbar.html' %}
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="col-md-10">
+                {% if admins %}
+                <table class="table table-bordered table-hover open-sans">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for admin in admins %}
+                        <tr>
+                            <td>{{ admin.name }}</td>
+                            <td>{{ admin.email }}</td>
+                            <td>
+                                <a onclick="return confirm('Do really want to delete this admin?')" href="{{ url_for('delete_admin', id=admin.id) }}" class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                <h1 class="font-weight-bold text-center">No Admins Available</h1>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

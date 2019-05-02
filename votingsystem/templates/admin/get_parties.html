@@ -1,0 +1,39 @@
+{% extends 'base.html' %} {% block content %}
+<div class="bg full-height">
+    {% include 'partials/_admin_navbar.html' %}
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="col-md-10">
+                {% if parties %}
+                <table class="table table-bordered table-hover open-sans">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Logo</th>
+                            <th>Abbreviation</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for party in parties %}
+                        <tr>
+                            <td>{{ party.name }}</td>
+                            <td>
+                                <img src="{{ url_for('static', filename='user_images/' + party.logo) }}" width="60px" height="60px" alt="">
+                            </td>
+                            <td>{{ party.abbreviation }}</td>
+                            <td>
+                                <a onclick="return confirm('Do really want to delete this party?')" href="{{ url_for('delete_party', id=party.id) }}" class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                <h1 class="font-weight-bold text-center">No Parties Available</h1>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

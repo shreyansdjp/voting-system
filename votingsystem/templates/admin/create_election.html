@@ -1,0 +1,58 @@
+{% extends 'base.html' %} {% block content %}
+<div class="bg full-height">
+    {% include 'partials/_admin_navbar.html' %}
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow border-0">
+                    <div class="card-body">
+                        <h1 class="text-center">Create Election</h1>
+                        <form action="" method="POST">
+                            {{ form.hidden_tag() }}
+                            <div class="form-group">
+                                {{ form.name.label(class="col-form-label font-weight-bold") }}
+                                {{ form.name(class="form-control", placeholder="Name of Election") }}
+
+                                {% if form.name.errors %}
+                                    <div class="mt-2">
+                                        {% for error in form.name.errors %}
+                                            <span class="text-danger">{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                {{ form.date_started.label(class="col-form-label font-weight-bold") }}
+                                {{ form.date_started(class="form-control", placeholder="Date Started") }}
+
+                                {% if form.date_started.errors %}
+                                    <div class="mt-2">
+                                        {% for error in form.date_started.errors %}
+                                            <span class="text-danger">{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                {{ form.date_ended.label(class="col-form-label font-weight-bold") }}
+                                {{ form.date_ended(class="form-control", placeholder="Date Ended") }}
+
+                                {% if form.date_ended.errors %}
+                                    <div class="mt-2">
+                                        {% for error in form.date_ended.errors %}
+                                            <span class="text-danger">{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="form-group d-flex justify-content-center pt-4">
+                                {{ form.submit(class="btn btn-purple shadow") }}
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

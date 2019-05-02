@@ -1,0 +1,41 @@
+{% extends 'base.html' %} {% block content %}
+<div class="bg full-height">
+    {% include 'partials/_admin_navbar.html' %}
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="col-md-10">
+                {% if users %}
+                <table class="table table-bordered table-hover open-sans">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Adhaar Number</th>
+                            <th>Mobile Number</th>
+                            <th>Voter ID Number</th>
+                            <th>District</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                        <tr>
+                            <td>{{ user.name }}</td>
+                            <td>{{ user.adhaar_number }}</td>
+                            <td>{{ user.mobile_number }}</td>
+                            <td>{{ user.voter_id }}</td>
+                            <td>{{ user.district }}</td>
+                            <td>
+                                <a onclick="return confirm('Do really want to delete this user?')" href="{{ url_for('delete_user', id=user.id) }}" class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                <h1 class="font-weight-bold text-center">No Users Available</h1>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
