@@ -13,6 +13,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                {% if session.get('role') == 'superadmin' %}
                 <li class="nav-item my-4 mr-4">
                     <a
                         class="nav-link 
@@ -35,6 +36,7 @@
                         >Admins</a
                     >
                 </li>
+                {% endif %}
                 <li class="nav-item m-4">
                     <a
                         class="nav-link 
@@ -61,13 +63,17 @@
             <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                 <li class="nav-item my-4 ml-4">
                     {% if request.path == '/dashboard' or request.path == '/create/election' %}
+                    {% if session.get('role') == 'superadmin' %}
                     <a href="{{ url_for('create_election') }}" class="btn btn-info btn-block">
                         <i class="fas fa-plus mr-1"></i>Create New Election
                     </a>
+                    {% endif %}
                     {% elif request.path == '/get/admins' or request.path == '/create/admin' %}
+                    {% if session.get('role') == 'superadmin' %}
                     <a href="{{ url_for('create_admin') }}" class="btn btn-info btn-block">
                         <i class="fas fa-plus mr-1"></i>Create New Admin
                     </a>
+                    {% endif %}
                     {% elif request.path == '/get/parties' or request.path == '/create/party' %}
                     <a href="{{ url_for('create_party') }}" class="btn btn-info btn-block">
                         <i class="fas fa-plus mr-1"></i>Create New Party

@@ -1,9 +1,9 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, PasswordField, DateField
+from wtforms import StringField, SubmitField, PasswordField, DateField, IntegerField
 from wtforms.validators import DataRequired, Length, Email, ValidationError, EqualTo
 from flask_wtf.file import FileField, FileAllowed
-from datetime import datetime
 from .models import Election, Administrators, Party, User
+from .utils import current_date
 
 class AdminLoginForm(FlaskForm):
     email = StringField('Email Address', validators=[DataRequired(), Email()])
@@ -31,7 +31,7 @@ class CreateElectionForm(FlaskForm):
         date_started = self.date_started.data
         print(date_ended.data)
         print(datetime(datetime.now().year, datetime.now().month, datetime.now().day).date())
-        if date_ended.data == datetime(datetime.now().year, datetime.now().month, datetime.now().day).date():
+        if date_ended.data == current_date():
             raise ValidationError('Date Ended cannot be today')
 
         if date_ended.data < date_started:
@@ -94,3 +94,13 @@ class CreateUserForm(FlaskForm):
         if user:
             raise ValidationError('user with adhaar number already exists')
     
+
+class GetAdhaarForm(FlaskForm):
+    adhaar_number = StringField('Adhaar Number', validators=[DataRequired(), Length(min=12, max=12)])
+    submit = SubmitField('Verify Adhaar Number')
+
+
+class VerifyOTPForm(FlaskForm):
+    adhaar_number = StringField('Adhaar Number', validators=[DataRequired(), Length(min=12, max=12)])
+    otp = IntegerField('Verify OTP', validators=[DataRequired()])
+    submit = SubmitField('Verify OTP')
