@@ -49,7 +49,7 @@ class ParitesParticipating(db.Model):
 
 class ElectedParty(db.Model):
     __table_args__ = (
-        db.PrimaryKeyConstraint('election_id', 'party_id'),
+        db.PrimaryKeyConstraint('election_id', 'user_id'),
     )
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     election_id = db.Column(db.Integer, db.ForeignKey('election.id'), nullable=False)

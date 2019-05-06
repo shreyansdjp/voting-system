@@ -14,6 +14,13 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item m-4">
+                        <a href="{{ url_for('user_dashboard') }}" class="nav-link">
+                            Home
+                        </a>
+                    </li>
+                </ul>
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                     <li class="nav-item m-4">
                         <a href="{{ url_for('logout') }}" class="btn btn-danger">
@@ -52,15 +59,38 @@
                     {% if election.date_ended > current_date %}
                     <tr>
                         <td>{{ election.name }}</td>
+                        {% if election.party %}
+                        <td>
+                            <img src="{{ url_for('static', filename='user_images/' + election.party.logo) }}" alt="" />
+                            {{ election.party.abbreviation }}
+                        </td>
+                        {% else %}
                         <td></td>
+                        {% endif %}
                         <td></td>
-                        {% if election.voter_for %}
+                        {% if election.voted_for %}
                         <td></td>
                         {% else %}
                         <td>
                             <a href="{{ url_for('user_vote', election_id=election.id) }}" class="btn btn-info">Vote</a>
                         </td>
                         {% endif %}
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td>{{ election.name }}</td>
+                        {% if election.party %}
+                        <td>
+                            <img src="{{ url_for('static', filename='user_images/' + election.party.logo) }}" alt="" />
+                            {{ election.party.abbreviation }}
+                        </td>
+                        {% else %}
+                        <td></td>
+                        {% endif %}
+                        <td></td>
+                        <td>
+                            <a href="{{ url_for('view_stats', election_id=election.id) }}" class="btn btn-purple">View Stats</a>
+                        </td>
                     </tr>
                     {% endif %} {% endfor %}
                 </tbody>

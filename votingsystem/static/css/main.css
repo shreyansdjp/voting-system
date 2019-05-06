@@ -55,3 +55,7 @@ body {
 .btn-danger {
     background-color: #F44336;
 }
+
+td {
+    vertical-align: inherit !important;
+}

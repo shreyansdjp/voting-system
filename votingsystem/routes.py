@@ -60,8 +60,10 @@ def user_dashboard():
         elected_party = ElectedParty.query.filter_by(election_id=election.id, user_id=session.get('id')).first()
         if elected_party:
             election.voted_for = True
+            election.party = Party.query.filter_by(id=elected_party.party_id).first()
         else:
             election.voted_for = False
+            election.party = None
     date = current_date().strftime("%Y-%m-%d")
     return render_template("user/dashboard.html", elections=elections, current_date=date)
 
@@ -69,6 +71,10 @@ def user_dashboard():
 @app.route('/user/vote/<election_id>')
 @logged_in
 def user_vote(election_id):
+    elected_party = ElectedParty.query.filter_by(election_id=election_id, user_id=session.get('id')).first()
+    if elected_party:
+        flash('You have already voted for this election', 'danger')
+        return redirect(url_for('user_dashboard'))
     participating_parties = ParitesParticipating.query.filter_by(election_id=election_id).all()
     parties = []
     for party in participating_parties:
@@ -106,6 +112,23 @@ def elect_party(election_id, party_id):
         return redirect(url_for('user_dashboard'))
 
 
+@app.route('/view/stats/<election_id>')
+@logged_in
+def view_stats(election_id):
+    parties = ParitesParticipating.query.filter_by(election_id=election_id).all()
+    data = []
+    if parties:
+        for party in parties:
+            print(party.party_id)
+            elect_party = ElectedParty.query.filter_by(election_id=election_id, party_id=party.party_id).all()
+            total_votes = len(elect_party)
+            party = Party.query.filter_by(id=party.party_id).first()
+            print(party, total_votes)
+            data.append({
+                'votes': total_votes,
+                'party': party
+            })
+    return render_template("user/stats.html", data=data)
 
 ########### PARTIES ###########
 @app.route('/party/dashboard')
