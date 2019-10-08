@@ -144,6 +144,7 @@ def admin_login():
     form = AdminLoginForm()
     if form.validate_on_submit():
         print(form.email.data)
+        print(sha256_crypt.encrypt('123'))
         admin = Administrators.query.filter_by(email=form.email.data).first()
         print(admin.password)
         if admin:

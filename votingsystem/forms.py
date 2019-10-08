@@ -29,8 +29,6 @@ class CreateElectionForm(FlaskForm):
 
     def validate_date_ended(self, date_ended):
         date_started = self.date_started.data
-        print(date_ended.data)
-        print(datetime(datetime.now().year, datetime.now().month, datetime.now().day).date())
         if date_ended.data == current_date():
             raise ValidationError('Date Ended cannot be today')
 
